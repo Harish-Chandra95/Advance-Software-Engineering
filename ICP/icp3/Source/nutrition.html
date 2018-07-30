@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style type='text/css'>
+    .partition1 {
+        width: 20%;
+        float: left;
+        margin-right: 10px;
+    }
+
+    .partition2 {
+        width: 70%;
+        float: right;
+    }
+
+    .partition-wrap {
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    td{
+        margin: 5px;
+    }
+
+</style>
+
+<body>
+
+<div align="center">
+    <div ng-app="Nutrifacts" ng-controller="Nutrifactsctrl">
+
+        <h1>Nutrition facts </h1>
+        <div class="row">
+        <input type="text" ng-model="food">
+        <button id="btn" ng-click="getNutrition()"> search food </button>
+        <button id="btn1" ng-click="getSpeech()">get speech </button>
+        <br/>
+        <br/>
+
+        <div class="NutritionModule">
+            <p class="Nutritionfacts" ng-bind-html-unsafe="Nutrition.html"></p>
+
+        </div>
+</div>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
+
+<title>Nutrition facts</title>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.1/angular.min.js"></script>
+<script>
+    angular.module('Nutrifacts', [])
+        .controller('Nutrifactsctrl', function($scope, $http) {
+            $scope.getNutrition = function() {
+                var food = $scope.food;
+
+                $http.get('https://api.edamam.com/api/nutrition-data?app_id=c6a9b6cd&app_key=b0e587ba6f9b22295f56ba7e29722fee&ingr="'+food+'"').success(function(data) {
+                    console.log(data);
+                    calories = data.calories;
+                    totalWeight = data.totalWeight;
+
+                    console.log(calories);
+                    console.log(totalWeight)
+                    $scope.Nutrition = {
+                        html: " calories " + calories + " Kcal " + " weight " + totalWeight + "g"
+                    }
+
+                    $scope.getSpeech = function() {
+                        var speech = $scope.food;
+                        window.location.href = "https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?accept=audio/wav&text="+speech+"&voice=en-US_MichaelVoice"
+                    }
+                })
+            }
+        });
+
+
+
+</script>
+
+
+
+<style>
+    .NutritionModule {
+        background: #f2f2f2;
+        height: 90px;
+        width: 250px;
+        border: 1px  #ccc;
+        padding: 1em;
+    }
+</style>
