@@ -1,0 +1,41 @@
+<ion-view title="THE ROVER" class="fb">
+  <link href="css/s1.css" rel="stylesheet">
+
+  <ion-content>
+    <div>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input ng-model="Username" type="text" placeholder="Username" />
+        </label>
+        <label class="item item-input">
+          <input ng-model="Password" type="password" placeholder="Password" />
+        </label>
+      </div>
+      <div class="padding-left padding-right">
+        <div>
+          <a class="button0" ng-click="login(username, password)">Login</a><br/><br/>
+          <a class="button1" ng-click="register(username, password)">Register</a>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+
+<style>
+  .button0{
+    padding: 10px 100px;
+    background-color: cadetblue;
+    border: 0px solid;
+    cursor: pointer;
+    color: aliceblue;
+
+  }
+
+  .button1{
+    padding: 10px 92px;
+    background-color: cadetblue;
+    border: 0px solid;
+    cursor: pointer;
+    color: aliceblue;
+  }
+</style>

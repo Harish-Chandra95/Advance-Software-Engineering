@@ -1,0 +1,21 @@
+{
+  "name": "tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "cordova-android": "^7.1.0",
+    "cordova-ios": "~4.5.4"
+  },
+  "author": "Kathryn Hodge",
+  "license": "ISC",
+  "cordova": {
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  }
+}
